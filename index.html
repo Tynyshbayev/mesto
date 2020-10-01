@@ -1,0 +1,82 @@
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+</head>
+<body class="page">
+    <header class="header">
+        <img src=".//images/header_image.png" class="header__logo" alt="logoMesto">
+    </header>
+    <section class="profile">
+        <img class="profile__avatar" src=".//images/jak_image.jpg" alt="Жак-Ив Кусто">
+        <div class="profile__info">
+            <h3 class="profile__name">Жак-Ив Кусто</h3>
+            <button class="profile__edit-button" id="open">
+            </button>
+            <p class="profile__text">Исследователь океана</p>
+            </div>
+            <button class="profile__add-button">
+            </button>
+    </section>
+    <section class="elements">
+        <div class="elements__element">
+            <img src=".//images/karachaevsk.png" class="elements__image" alt="Карачаевск">
+                <h2 class="elements__title">Карачаевск</h2>
+                <button class="elements__like" type="button"></button>
+        </div>
+
+        <div class="elements__element">
+            <img src=".//images/elbrus.png" class="elements__image" alt="Гора Эльбрус">
+                <h2 class="elements__title">Гора Эльбрус</h2>
+                <button class="elements__like" type="button"></button>
+        </div>
+
+        <div class="elements__element">
+            <img src=".//images/dombay.png" class="elements__image" alt="Домбай">
+                <h2 class="elements__title">Домбай</h2>
+                <button class="elements__like" type="button" alt="кнопка лайк"></button>
+    
+        </div>
+
+        <div class="elements__element">
+            <img src=".//images/elbrus.png" class="elements__image" alt="Гора Эльбрус">
+                <h2 class="elements__title">Гора Эльбрус</h2>
+                <button class="elements__like" type="button"></button>
+         
+            </div>
+
+
+        <div class="elements__element">
+            <img src=".//images/dombay.png" class="elements__image" alt="Домбай">
+                <h2 class="elements__title">Домбай</h2>
+                <button class="elements__like" type="button"></button>
+       
+            </div>
+        <div class="elements__element">
+            <img src=".//images/karachaevsk.png" class="elements__image" alt="Карачаевск">
+                    <h2 class="elements__title">Карачаево-Черкессия</h2>
+                    <button class="elements__like" type="button"></button>
+                </div>
+       
+              </section>
+    <footer class="footer">
+        <p class="footer__author">&copy;2020.Тынышбаев Алихан</p>
+    </footer>
+
+    <div class="popup">
+        <div class="popup__container">
+          <h3 class="popup__title">Редактировать профиль</h3>
+        <form  name="popup" class="popup__form">
+        <input type="text" class="popup__form-name">
+        <input type="text" class="popup__form-text"> 
+      <button class="popup__close-button"><img src="./images/close_button.png"></button>
+      <button class="popup__save-button">Сохранить</button>
+    </form>
+</div>
+</div>
+<script src="./scripts/script.js"></script>
+</body>
+
+</html>
