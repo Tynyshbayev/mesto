@@ -8,13 +8,14 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     color: white; 
+    margin: 0;
+    text-align: center;
 }
 @media screen and (max-width: 425px)
 {
   .profile__text {
     font-size: 14px;
     line-height: 17px;
-    text-align: center;
     margin: 0;
   }
 }

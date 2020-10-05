@@ -1,5 +1,5 @@
 .elements__like {
-    background-image: url(../../../images/like_button.png);
+    background-image: url(../../../images/like_button.svg);
     background-color: #ffffff;
     background-repeat: no-repeat;
     background-size: contain;
@@ -16,6 +16,7 @@
     grid-row: 5/5;
     grid-column: 2/2;
     justify-self: end;
+    z-index: 2;
 }
 .cards__like:hover {
     opacity: 0.6;

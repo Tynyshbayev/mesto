@@ -13,3 +13,11 @@
     border-color: rgba(84, 84, 84, 0.7);
     border-style: solid;
 }
+@media all and (max-width: 425px) {
+    .header {
+        padding-top: 28px;
+        max-width: 324px;
+        margin-bottom: 38px;
+        min-height: 56px;
+    }
+}
