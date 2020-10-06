@@ -2,7 +2,6 @@
 @import url(../fonts/Inter/inter.css);
 @import url(../block/header/header.css);
 @import url(../block/header/__logo/header__logo.css);
-@import url(../block/header/__line/header__line.css);
 @import url(../block/profile/profile.css);
 @import url(../block/profile/__avatar/profile__avatar.css);
 @import url(../block/profile/__edit-button/profile__edit-button.css);
@@ -27,7 +26,3 @@
 @import url(../block/popup/__form/popup__form.css);
 @import url(../block/popup/__title/popup__title.css);
 @import url(../block/popup/_opened/popup_opened.css);
-@import url();
-@import url();
-@import url();
-@import url();

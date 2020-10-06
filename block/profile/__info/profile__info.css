@@ -1,4 +1,4 @@
-.profile__info{
+.profile__info {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: 43px auto;
@@ -8,8 +8,7 @@
     margin-top: 18px;
     margin-bottom: 25px;
 }
-@media screen and (max-width: 425px)
-{
+@media screen and (max-width: 425px) {
     .profile__info {
         row-gap: 14px;
         column-gap: 1px;

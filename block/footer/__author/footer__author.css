@@ -1,15 +1,14 @@
-.footer__author{
+.footer__author {
     font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 22px;
-color: #545454;
-font-family: "Inter", "Arial", "Helvetica";
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-text-rendering: optimizeLegibility;
-margin: 0;
-
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #545454;
+    font-family: "Inter", "Arial", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    margin: 0;
 }
 
 @media all and (max-width: 425px) {
@@ -17,4 +16,4 @@ margin: 0;
         font-size: 14px;
         line-height: 17px;
     }
-  }
+}

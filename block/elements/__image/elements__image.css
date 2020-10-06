@@ -2,7 +2,6 @@
     width: 282px;
     height: 282px;
     border-radius: 10px 10px 0px 0px;
-    cursor: pointer;
     grid-row: 1/5;
     grid-column: 1/2;
 }

@@ -6,18 +6,17 @@
     margin-top: 7px;
     border: none;
     outline: none;
-    transition: opacity .5s linear;
     min-width: 20px;
     min-height: 18px;
     padding: 0;
-    border: 0;
     margin-right: 21px;
     cursor: pointer;
     grid-row: 5/5;
     grid-column: 2/2;
     justify-self: end;
-    z-index: 2;
+    z-index: 1;
+    
 }
-.cards__like:hover {
+.elements__like:hover {
     opacity: 0.6;
 }

@@ -1,5 +1,5 @@
   .elements__title {
-    font-family: "Inter", "Arial", "Helvetica";
+    font-family: "Inter", "Arial", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
