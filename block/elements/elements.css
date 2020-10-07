@@ -19,9 +19,3 @@
         grid-template-columns: repeat(1, 282px);
     }
 }
-
-@media all and (min-width: 320px) and (max-width: 618px) {
-    .elements {
-        grid-template-columns: repeat(1, 282px);
-    }
-}
