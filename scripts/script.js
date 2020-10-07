@@ -6,7 +6,7 @@ let popupProfile = document.querySelector(".popup");
 let openButtonPopup = document.querySelector(".profile__edit-button");  
 let nameInput = document.querySelector(".popup__form-name");
 let jobInput = document.querySelector(".popup__form-text");
-let popup = document.querySelector('.popup');
+
 
 
 // Обработчик «отправки» формы, хотя пока
@@ -21,13 +21,13 @@ function formSubmitHandler(evt) {
 }
 
 function closePopup(popup) { 
-  popup.classList.remove("popup_opened"); 
+  popupProfile.classList.remove("popup_opened"); 
 } 
 
 function openPopup(popup) {
-  popup.classList.add("popup_opened");
+  popupProfile.classList.add("popup_opened");
  nameInput.value = nameProfile.textContent;  
- jobInput.value = jobProfile.textContent ;
+ jobInput.value = jobProfile.textContent;
 }
 
 function openProfilePopup() {
