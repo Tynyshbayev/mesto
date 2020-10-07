@@ -8,32 +8,26 @@ let nameInput = document.querySelector(".popup__form-name");
 let jobInput = document.querySelector(".popup__form-text");
 
 
+function closePopup() { 
+  popupProfile.classList.remove("popup_opened"); 
+} 
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
 function formSubmitHandler(evt) {
   evt.preventDefault();
 
   nameProfile.textContent = nameInput.value; 
   jobProfile.textContent = jobInput.value;  
-  closePopup(popup);
+  closePopup();
 
 }
 
-function closePopup(popup) { 
-  popupProfile.classList.remove("popup_opened"); 
-} 
-
-function openPopup(popup) {
+function openPopup() {
   popupProfile.classList.add("popup_opened");
  nameInput.value = nameProfile.textContent;  
  jobInput.value = jobProfile.textContent;
 }
 
-function openProfilePopup() {
-  openPopup(popupProfile);
-}
-openButtonPopup.addEventListener("click", openProfilePopup);
+openButtonPopup.addEventListener("click", openPopup);
 
 closeButton.addEventListener("click", closePopup);
 formElement.addEventListener("submit", formSubmitHandler);
