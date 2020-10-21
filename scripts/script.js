@@ -69,20 +69,6 @@ function openPopup() {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 }
-
-function closePopup() {
-  popupProfile.classList.remove("popup_opened");
-}
-function handleOpenPopup(popUpAdd) {
-  popUpAdd.classList.add("popup_opened");
-}
-function handleClosePopup(popUpAdd) {
-  popUpAdd.classList.remove("popup_opened");
-}
-const renderCards = () => {
-  const items = initialCards.map(getItems);
-  sectionElements.append(...items);
-};
 const handleLikePressed = (event) => {
   event.target
     .closest(".elements__like")
@@ -112,6 +98,19 @@ const getItems = (data) => {
   return card;
 };
 
+function closePopup() {
+  popupProfile.classList.remove("popup_opened");
+}
+function handleOpenPopup(popUpAdd) {
+  popUpAdd.classList.add("popup_opened");
+}
+function handleClosePopup(popUpAdd) {
+  popUpAdd.classList.remove("popup_opened");
+}
+const renderCards = () => {
+  const items = initialCards.map(getItems);
+  sectionElements.append(...items);
+};
 popUpSaveButton.addEventListener("click", (evt) => {
   evt.preventDefault();
   const item = getItems({
