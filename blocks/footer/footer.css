@@ -1,12 +1,12 @@
 .footer {
-  max-width: 318px;
-  margin: 66px 763px 60px 199px;
+    max-width: 318px;
+    margin: 66px 763px 60px 199px;
 }
 @media all and (max-width: 425px) {
-  .footer {
-      margin: 48px 66px 0 66px;
-      max-width: 282px;
-      margin-bottom: 36px;
-      max-height: 14px;
-  }
+    .footer {
+        margin: 48px 66px 0 66px;
+        max-width: 282px;
+        margin-bottom: 36px;
+        max-height: 14px;
+     }
 }

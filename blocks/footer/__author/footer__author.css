@@ -9,11 +9,12 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     margin: 0;
-}
-
+  }
+  
 @media all and (max-width: 425px) {
     .footer__author {
         font-size: 14px;
         line-height: 17px;
     }
-}
+  }
+  

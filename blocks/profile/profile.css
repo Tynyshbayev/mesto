@@ -1,18 +1,18 @@
 .profile {
-  max-width: 882px;
-  width: 100%;
-  min-height: 120px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin: auto;
+    max-width: 882px;
+    width: 100%;
+    min-height: 120px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: auto;
 }
 @media screen and (max-width: 590px) {
-  .profile {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      max-width: 282px;
-      flex-direction: column;
+    .profile {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 282px;
+        flex-direction: column;
   }
 }
