@@ -5,3 +5,6 @@
     grid-row: 1/5;
     grid-column: 1/2;
 }
+.elements__image:hover{
+    opacity: 0.6;
+}
