@@ -55,7 +55,9 @@ const initialCards = [
       "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
-
+function closePopup() {
+  popupProfile.classList.remove("popup_opened");
+}
 function handleformSubmit(evt) {
   evt.preventDefault();
 
@@ -68,9 +70,6 @@ function openPopup() {
   popupProfile.classList.add("popup_opened");
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-}
-function closePopup() {
-  popupProfile.classList.remove("popup_opened");
 }
 function handleOpenPopup(popUpAdd) {
   popUpAdd.classList.add("popup_opened");

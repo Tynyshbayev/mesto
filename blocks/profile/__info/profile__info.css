@@ -16,7 +16,7 @@
         row-gap: 14px;
         column-gap: 0;
         justify-content: center;
-  }
+    }
 }
 
 @media all and (max-width: 425px) {
@@ -27,5 +27,5 @@
         row-gap: 14px;
         column-gap: 0;
         justify-content: center;
-  }
+    }
 }
