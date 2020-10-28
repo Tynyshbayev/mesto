@@ -14,7 +14,7 @@ function showError(formElement, input){
 }
 function hideError(formElement, input) {
     const errorElement = formElement.querySelector(`#${input.id}-error`);
-    errorElement.textContent = " ";
+    errorElement.textContent = "";
     input.classList.remove(parametersValidation.inputErrorClass);
 }
 function checkInputValidity(formElement, input) {
