@@ -13,7 +13,7 @@ const popUpPic = document.querySelector("#popup-image");
 const popUpPicCloseButton = document.querySelector(
   ".popup__close-button-image"
 );
-
+const allPopups = Array.from(document.querySelectorAll(".popup"));
 const sectionElements = document.querySelector(".elements");
 const template = document.querySelector(".template");
 const elementName = document.querySelector(".popup__input_type_title");
@@ -55,9 +55,16 @@ const initialCards = [
       "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
+
+
+
 function closePopup() {
   popupProfile.classList.remove("popup_opened");
+  document.removeEventListener("keydown", keyHandler);
 }
+
+
+
 function handleformSubmit(evt) {
   evt.preventDefault();
 
@@ -71,12 +78,40 @@ function openPopup() {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 }
+
+
+
 function handleOpenPopup(popUpAdd) {
   popUpAdd.classList.add("popup_opened");
+  document.addEventListener("keydown", keyHandler);
 }
+
+
+
 function handleClosePopup(popUpAdd) {
   popUpAdd.classList.remove("popup_opened");
+  document.removeEventListener("keydown", keyHandler);
 }
+
+
+
+const keyHandler = (evt) => {
+  if(evt.key === 'Escape'){
+      const openedPopup = document.querySelector('.popup_opened');
+      handleClosePopup(openedPopup);
+  }
+}
+
+allPopups.forEach(function (popUpAdd) {
+  popUpAdd.addEventListener("click", function (evt) {
+    if (evt.target.classList.contains("popup_opened")) {
+      handleClosePopup(popUpAdd);
+    }
+  });
+}); 
+
+
+
 const handleLikePressed = (event) => {
   event.target
     .closest(".elements__like")
@@ -86,6 +121,9 @@ const handleLikePressed = (event) => {
 const removeCard = (event) => {
   event.target.closest(".elements__element").remove();
 };
+
+
+
 const getItems = (data) => {
   const card = template.content.cloneNode(true);
   const picOpenPls = card.querySelector(".elements__image");
@@ -105,6 +143,7 @@ const getItems = (data) => {
   });
   return card;
 };
+
 
 const renderCards = () => {
   const items = initialCards.map(getItems);
