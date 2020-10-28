@@ -46,9 +46,9 @@
             <div class="popup__container">
                     <h3 class="popup__title">Новое место</h3>
                     <form name="elementspopup" class="popup__form" id="popup__form_element">
-                    <input id="title-input" type="text" class="popup__input_type_title popup__input" name="title" placeholder="Название"/>
+                    <input id="title-input" type="text" class="popup__input_type_title popup__input" name="title" placeholder="Название" minlength="2" maxlength="40" required/>
                     <span id="title-input-error" class="popup__input-error"></span>
-                    <input id="url-input" type="url" class="popup__input_type_url popup__input" name="url" placeholder="Ссылка на картинку" />
+                    <input id="url-input" type="url" class="popup__input_type_url popup__input" name="url" placeholder="Ссылка на картинку" required/>
                     <span id="url-input-error" class="popup__input-error"></span>
                     <button class="popup__close-button" type="button"><img src="./images/close_button.svg" alt="кнопка закрытия попапа" id="elements__close"></button>
                     <button class="popup__save-button" type="submit" id="elements__save-button">Создать</button>

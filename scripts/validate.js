@@ -1,4 +1,4 @@
-const parametersValidation = {
+const parameterofValidation = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__save-button',
@@ -9,13 +9,13 @@ const parametersValidation = {
 function showError(formElement, input){
     const errorElement = formElement.querySelector(`#${input.id}-error`);
     errorElement.textContent = input.validationMessage;
-    input.classList.add(parametersValidation.inputErrorClass);
+    input.classList.add(parameterofValidation.inputErrorClass);
     
 }
 function hideError(formElement, input) {
     const errorElement = formElement.querySelector(`#${input.id}-error`);
     errorElement.textContent = "";
-    input.classList.remove(parametersValidation.inputErrorClass);
+    input.classList.remove(parameterofValidation.inputErrorClass);
 }
 function checkInputValidity(formElement, input) {
     if (input.checkValidity()) {
@@ -27,17 +27,17 @@ function checkInputValidity(formElement, input) {
 
 function toggleButtonState(formElement, buttonElement) {
     if (formElement.checkValidity()) {
-        buttonElement.classList.remove(parametersValidation.inactiveButtonClass);
+        buttonElement.classList.remove(parameterofValidation.inactiveButtonClass);
         buttonElement.disabled = false;
     } else {
-        buttonElement.classList.add(parametersValidation.inactiveButtonClass);
+        buttonElement.classList.add(parameterofValidation.inactiveButtonClass);
         buttonElement.disabled = true;
     }
 }
 
 function setEventListeners(formElement) {
-    const inputElements = Array.from(formElement.querySelectorAll(parametersValidation.inputSelector));
-    const buttonElement = formElement.querySelector(parametersValidation.submitButtonSelector);
+    const inputElements = Array.from(formElement.querySelectorAll(parameterofValidation.inputSelector));
+    const buttonElement = formElement.querySelector(parameterofValidation.submitButtonSelector);
 
     inputElements.forEach((input) => {
         input.addEventListener ('input', (event) => {
@@ -50,7 +50,7 @@ function setEventListeners(formElement) {
 }
 
 function enableValidation() {
-    const formElements = Array.from(document.querySelectorAll(parametersValidation.formSelector));
+    const formElements = Array.from(document.querySelectorAll(parameterofValidation.formSelector));
 
     formElements.forEach( (form) => {
         form.addEventListener('submit', (event) => {
@@ -61,4 +61,4 @@ function enableValidation() {
     })
 }
 
-enableValidation(parametersValidation);
+enableValidation(parameterofValidation);
