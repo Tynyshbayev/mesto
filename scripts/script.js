@@ -14,7 +14,7 @@ const popUpPicCloseButton = document.querySelector(
   ".popup__close-button-image"
 );
 const allPopups = Array.from(document.querySelectorAll(".popup"));
-const sectionElements = document.querySelector(".elements");
+const sectionElement = document.querySelector(".elements");
 const template = document.querySelector(".template");
 const elementName = document.querySelector(".popup__input_type_title");
 const elementPlace = document.querySelector(".popup__input_type_url");
@@ -58,14 +58,7 @@ const initialCards = [
 
 
 
-function closePopup() {
-  popupProfile.classList.remove("popup_opened");
-  document.removeEventListener("keydown", keyHandler);
-}
-
-
-
-function handleformSubmit(evt) {
+function handleFormSubmit(evt) {
   evt.preventDefault();
 
   nameProfile.textContent = nameInput.value;
@@ -73,17 +66,14 @@ function handleformSubmit(evt) {
   closePopup();
 }
 
-function openPopup() {
-  popupProfile.classList.add("popup_opened");
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
-}
 
 
 
 function handleOpenPopup(popUpAdd) {
   popUpAdd.classList.add("popup_opened");
   document.addEventListener("keydown", keyHandler);
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
 }
 
 
@@ -147,7 +137,7 @@ const getItems = (data) => {
 
 const renderCards = () => {
   const items = initialCards.map(getItems);
-  sectionElements.append(...items);
+  sectionElement.append(...items);
 };
 popUpSaveButton.addEventListener("click", (evt) => {
   evt.preventDefault();
@@ -155,7 +145,7 @@ popUpSaveButton.addEventListener("click", (evt) => {
     name: elementName.value,
     link: elementPlace.value,
   });
-  sectionElements.prepend(item);
+  sectionElement.prepend(item);
   elementName.value = "";
   elementPlace.value = "";
   handleClosePopup(popUpAdd);
@@ -171,6 +161,10 @@ popUpCloseButtonAdd.addEventListener("click", function () {
 popUpPicCloseButton.addEventListener("click", function () {
   handleClosePopup(popUpPic);
 });
-openButtonPopup.addEventListener("click", () => openPopup());
-closeButton.addEventListener("click", () => closePopup());
-formElement.addEventListener("submit", handleformSubmit);
+openButtonPopup.addEventListener("click", function () {
+  handleOpenPopup(popupProfile);
+});
+closeButton.addEventListener("click", function () {
+  handleClosePopup(popupProfile);
+});
+formElement.addEventListener("submit", handleFormSubmit);
