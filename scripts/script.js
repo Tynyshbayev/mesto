@@ -63,17 +63,19 @@ function handleFormSubmit(evt) {
 
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
-   handleClosePopup(popupProfile);
+  openProfilePopup();
 }
 
-
+function openProfilePopup() {
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
+   handleOpenPopup(popupProfile);
+  }
 
 
 function handleOpenPopup(popUpAdd) {
   popUpAdd.classList.add("popup_opened");
   document.addEventListener("keydown", keyHandler);
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
 }
 
 
@@ -162,7 +164,7 @@ popUpPicCloseButton.addEventListener("click", function () {
   handleClosePopup(popUpPic);
 });
 openButtonPopup.addEventListener("click", function () {
-  handleOpenPopup(popupProfile);
+  openProfilePopup();
 });
 closeButton.addEventListener("click", function () {
   handleClosePopup(popupProfile);
