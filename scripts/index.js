@@ -1,3 +1,6 @@
+import {Card} from './card.js';
+import {FormValidator} from './formValidator.js'
+
 const formElement = document.querySelector(".popup__form");
 const nameProfile = document.querySelector(".profile__name");
 const jobProfile = document.querySelector(".profile__text");
@@ -136,7 +139,6 @@ const getItems = (data) => {
   return card;
 };
 
-
 const renderCards = () => {
   const items = initialCards.map(getItems);
   sectionElement.append(...items);
@@ -152,7 +154,22 @@ popUpSaveButton.addEventListener("click", (evt) => {
   elementPlace.value = "";
   handleClosePopup(popUpAdd);
 });
-renderCards();
+const parameterofValidation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: '.popup__save-button_inactive',
+  inputErrorClass: '.popup__input_state_invalid'
+}
+
+const formList = Array.from(document.querySelectorAll(parameterofValidation.formSelector));
+
+formList.forEach((form) => {
+  const formsValidator = new FormValidator(parameterofValidation, form);
+  formsValidator.enableValidation();
+})
+
+
 
 addButton.addEventListener("click", function () {
   handleOpenPopup(popUpAdd);
@@ -170,3 +187,4 @@ closeButton.addEventListener("click", function () {
   handleClosePopup(popupProfile);
 });
 formElement.addEventListener("submit", handleFormSubmit);
+renderCards();
