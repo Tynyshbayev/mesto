@@ -1,9 +1,9 @@
 export class FormValidator {
 
-constructor (settings, form) {
-        this._form = form;
-        this._inputElements = Array.from(form.querySelectorAll(settings.inputSelector));
-        this._submitButton = form.querySelector(settings.submitButtonSelector);
+constructor (settings, formElement) {
+        this._formElement = formElement;
+        this._inputElements = Array.from(formElement.querySelectorAll(settings.inputSelector));
+        this._submitButton = formElement.querySelector(settings.submitButtonSelector);
         this._inactiveButtonStatus = settings.inactiveButtonClass;
         this._inputError = settings.inputErrorClass;
     }
@@ -19,13 +19,14 @@ constructor (settings, form) {
     errorElement.textContent = "";
     input.classList.remove(this._inputErrorClass);
 }
- _checkInputValidity() {
-    if (input.checkValidity()) {
-        this._hideError (formElement, input);
+_checkInputValidity(inputElement) {
+    if (inputElement.checkValidity()) {
+        this._hideError (inputElement);
     } else {
-        this._showError(formElement, input);
+        this._showError(inputElement);
     }
-};
+}
+
 
 _toggleButtonState() {
     if (this._formElement.checkValidity()) {
@@ -38,17 +39,15 @@ _toggleButtonState() {
 }
 
 _setEventListeners() {
-    const inputElements = Array.from(formElement.querySelectorAll(parameterofValidation.inputSelector));
-    const buttonElement = formElement.querySelector(parameterofValidation.submitButtonSelector);
-
-    inputElements.forEach((input) => {
-        this._input.addEventListener ('input', (event) => {
-            this._checkInputValidity(formElement, event.target);
-            this._toggleButtonState(formElement, buttonElement);
+    this._formElement.addEventListener('submit', function (evt) {
+        evt.preventDefault();
+    });
+    this._inputElements.forEach((inputElement) => {
+        inputElement.addEventListener('input', () => {
+            this._checkInputValidity(inputElement);
+            this._toggleButtonState();
         });
     });
-
-    toggleButtonState(formElement, buttonElement);
 }
 
  enableValidation() {
