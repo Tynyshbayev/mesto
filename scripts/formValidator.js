@@ -8,33 +8,33 @@ constructor (settings, formElement) {
         this._inputError = settings.inputErrorClass;
     }
     
- _showError(){
+ _showError(input){
     const errorElement = this._formElement.querySelector(`#${input.id}-error`);
     errorElement.textContent = input.validationMessage;
     input.classList.add(this._inputErrorClass);
     
 }
- _hideError() {
+ _hideError(input) {
     const errorElement = this._formElement.querySelector(`#${input.id}-error`);
     errorElement.textContent = "";
     input.classList.remove(this._inputErrorClass);
 }
-_checkInputValidity(inputElement) {
-    if (inputElement.checkValidity()) {
-        this._hideError (inputElement);
+_checkInputValidity(input) {
+    if (input.checkValidity()) {
+        this._hideError (input);
     } else {
-        this._showError(inputElement);
+        this._showError(input);
     }
 }
 
 
 _toggleButtonState() {
     if (this._formElement.checkValidity()) {
-        this._buttonElement.classList.remove(parameterofValidation.inactiveButtonClass);
-        this._buttonElement.disabled = false;
+        this._submitButton.classList.remove(this._inactiveButtonClass);
+        this._submitButton.disabled = false;
     } else {
-        this._buttonElement.classList.add(parameterofValidation.inactiveButtonClass);
-        this._buttonElement.disabled = true;
+        this._submitButton.classList.add(this._inactiveButtonClass);
+        this._submitButton.disabled = true;
     }
 }
 
