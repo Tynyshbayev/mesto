@@ -10,6 +10,9 @@
     color: white;
     margin: 0;
     text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 @media screen and (max-width: 425px) {
     .profile__text {
