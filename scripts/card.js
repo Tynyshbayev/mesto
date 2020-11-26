@@ -7,9 +7,8 @@ export class Card {
     }
     getCard () {
         this._card = this._template.cloneNode(true);
-        this._picsrc = card.querySelector(".elements__image");
         this._card.querySelector('.elements__image').alt = this._name;
-        this._picsrc.src = data.link;
+        this._picsrc = this._card.querySelector('.elements__image').src = this._link;
         this._card.querySelector(".elements__title").innerText = this._name;
       
         this._setEventLiseners();
