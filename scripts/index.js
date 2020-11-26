@@ -79,6 +79,8 @@ function openProfilePopup() {
 function handleOpenPopup(popUpAdd) {
   popUpAdd.classList.add("popup_opened");
   document.addEventListener("keydown", keyHandler);
+  popUpSaveButton.classList.add(parameterofValidation.inactiveButtonClass);
+  popUpSaveButton.disabled = true;
 }
 
 
@@ -105,34 +107,33 @@ allPopups.forEach(function (popUpAdd) {
   });
 }); 
 
-function PicOpenPls (link, name) {
+function picOpenPls (link, name) {
   popUpPicImage.src = link;
   popUpPicText.innerText =name;
   handleOpenPopup(popUpPic);
 }
 
-const addCard = (data) => {
-  const card = new Card(data, '.template', PicOpenPls);
+const getCard = (data) => {
+  const card = new Card(data, '.template', picOpenPls);
   return card.getCard();
 }
 
 
 const renderCards = () => {
-  const items = initialCards.map(element => addCard(element));
+  const items = initialCards.map(element => getCard(element));
   sectionElement.append(...items)
 }
 
-popUpSaveButton.addEventListener("click", (evt) => {
+function handlesubmitform(evt) {
   evt.preventDefault();
-  const item = addCard({
+  const item = getCard({
     name: elementName.value,
     link: elementPlace.value,
   });
   sectionElement.prepend(item);
-  elementName.value = "";
-  elementPlace.value = "";
   handleClosePopup(popUpAdd);
-});
+};
+
 const parameterofValidation = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -144,14 +145,19 @@ const parameterofValidation = {
 const formList = Array.from(document.querySelectorAll(parameterofValidation.formSelector));
 
 formList.forEach((form) => {
-  const formsValidator = new FormValidator(parameterofValidation, form);
-  formsValidator.enableValidation();
+  const formProfileValidator = new FormValidator(parameterofValidation, form);
+  formProfileValidator.enableValidation();
+const formAddCardValidator = new FormValidator(parameterofValidation, form);
+formAddCardValidator.enableValidation();
 })
 
 
 
 addButton.addEventListener("click", function () {
+  elementName.value = "";
+  elementPlace.value = "";
   handleOpenPopup(popUpAdd);
+  
 });
 popUpCloseButtonAdd.addEventListener("click", function () {
   handleClosePopup(popUpAdd);
@@ -166,4 +172,5 @@ closeProfileButton.addEventListener("click", function () {
   handleClosePopup(popupProfileMain);
 });
 formProfileElement.addEventListener("submit", submitProfileForm);
+popUpSaveButton.addEventListener("submit",handlesubmitform);
 renderCards();
