@@ -1,11 +1,12 @@
 import {Card} from './card.js';
 import {FormValidator} from './formValidator.js'
 
-const formProfileElement = document.querySelector(".popup__form");
+const formProfileElement = document.querySelector(".popup__form_profile");
+const formElemensAdd = document.querySelector(".popup__form_add");
 const nameProfile = document.querySelector(".profile__name");
 const jobProfile = document.querySelector(".profile__text");
 const closeProfileButton = document.querySelector(".popup__close-button");
-const popupProfileMain = document.querySelector(".popup");
+const popupProfileMain = document.querySelector(".popup_profile");
 const openButtonPopup = document.querySelector(".profile__edit-button");
 const nameInput = document.querySelector(".popup__input_type_name");
 const jobInput = document.querySelector(".popup__input_type_text");
@@ -25,6 +26,7 @@ const popUpSaveButton = document.querySelector("#elements__save-button");
 const popUpCloseButtonAdd = document.querySelector("#elements__close");
 const popUpPicImage = document.querySelector(".popup__picture-image");
 const popUpPicText = document.querySelector(".popup__title-image");
+const formAddCard = document.querySelector('#popup__form_element');
 
 const initialCards = [
   {
@@ -142,14 +144,12 @@ const parameterofValidation = {
   inputErrorClass: '.popup__input_state_invalid'
 }
 
-const formList = Array.from(document.querySelectorAll(parameterofValidation.formSelector));
 
-formList.forEach((form) => {
-  const formProfileValidator = new FormValidator(parameterofValidation, form);
-  formProfileValidator.enableValidation();
-const formAddCardValidator = new FormValidator(parameterofValidation, form);
+const formProfileValidator =  new FormValidator(parameterofValidation, formProfileElement);
+formProfileValidator.enableValidation();
+const formAddCardValidator = new FormValidator(parameterofValidation, formElemensAdd);
 formAddCardValidator.enableValidation();
-})
+
 
 
 
@@ -172,5 +172,5 @@ closeProfileButton.addEventListener("click", function () {
   handleClosePopup(popupProfileMain);
 });
 formProfileElement.addEventListener("submit", submitProfileForm);
-popUpSaveButton.addEventListener("submit",handlesubmitform);
+formAddCard.addEventListener("submit",handlesubmitform); 
 renderCards();
