@@ -18,8 +18,8 @@ const popUpPicCloseButton = document.querySelector(
   ".popup__close-button-image"
 );
 const allPopups = Array.from(document.querySelectorAll(".popup"));
-const sectionElement = document.querySelector(".elements");
-const template = document.querySelector(".template");
+const sectionElement = document.querySelector(".template");
+const template = document.querySelector(".elements");
 const elementName = document.querySelector(".popup__input_type_title");
 const elementPlace = document.querySelector(".popup__input_type_url");
 const popUpSaveButton = document.querySelector("#elements__save-button");
@@ -116,7 +116,7 @@ function picOpenPls (link, name) {
 }
 
 const getCard = (data) => {
-  const card = new Card(data, '.template', picOpenPls);
+  const card = new Card(data, '.elements', picOpenPls);
   return card.getCard();
 }
 
