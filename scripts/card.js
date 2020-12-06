@@ -10,10 +10,14 @@ export class Card {
         this._card.querySelector('.elements__image').alt = this._name;
         this._picsrc = this._card.querySelector('.elements__image').src = this._link;
         this._card.querySelector(".elements__title").innerText = this._name;
-      
+        this._cardImageCaption = this._card.querySelector('.elements__title');
+        this._cardLikeButton = this._card.querySelector('.elements__like') ;
+        this._cardDeleteButton = this._card.querySelector('.elements__delete-button');
         this._setEventLiseners();
 
         return this._card;
+        
+
 }
 _removeCard () {
     this._card.remove();

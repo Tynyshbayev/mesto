@@ -1,8 +1,10 @@
 export class FormValidator {
 
-constructor (settings, formElement) {
+    constructor (settings, formElement) {
         this._formElement = formElement;
-        this._inputElements = Array.from(formElement.querySelectorAll(settings.inputSelector));
+        console.log(this._formElement)
+        this._inputElements = Array.from(this._formElement.querySelectorAll(settings.inputSelector));
+        console.log(this._inputElements)
         this._submitButton = formElement.querySelector(settings.submitButtonSelector);
         this._inactiveButtonStatus = settings.inactiveButtonClass;
         this._inputError = settings.inputErrorClass;

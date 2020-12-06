@@ -81,7 +81,6 @@ function openProfilePopup() {
 function handleOpenPopup(popUpAdd) {
   popUpAdd.classList.add("popup_opened");
   document.addEventListener("keydown", keyHandler);
-  popUpSaveButton.classList.add(parameterofValidation.inactiveButtonClass);
   popUpSaveButton.disabled = true;
 }
 
@@ -157,6 +156,7 @@ addButton.addEventListener("click", function () {
   elementName.value = "";
   elementPlace.value = "";
   handleOpenPopup(popUpAdd);
+  popUpSaveButton.classList.add(parameterofValidation.inactiveButtonClass);
   
 });
 popUpCloseButtonAdd.addEventListener("click", function () {
