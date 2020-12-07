@@ -21,7 +21,7 @@ const openAddCardPopupButton = document.querySelector('.profile__add-button');
 
 const template = '.elements'; 
 const elements = document.querySelector('.template');
-const popupOpenImage = document.querySelector('.popup__container-image');
+const popupOpenImage = document.querySelector('.photo');
 const initialCards = [
   {
       name: 'Архыз',
@@ -73,10 +73,9 @@ const cardList = new Section ({
 }, elements)
 
 cardList.render();
+const addCardPopupForm = new PopupWithForm (popupAddCard, ({title, url}) => {addCard({name: title, link: url})}); 
 
-const addCardPopupForm = new PopupWithForm ('.popup__container-add', ({cardname, imagelink}) => {addCard({name: cardname, link: imagelink})}); 
-
-const editProfilePopupForm = new PopupWithForm ('.popup__container', ({profilename, job}) => {userInfo.setUserInfo({profilename, job})}); 
+const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({name, text}) => {userInfo.setUserInfo({name, text})}); 
 
 const userInfo = new UserInfo (currentProfileName, currentAboutMe);
 
