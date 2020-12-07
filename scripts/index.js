@@ -1,176 +1,101 @@
 import {Card} from './card.js';
 import {FormValidator} from './formValidator.js'
+import {Section} from './Section.js';
+import {PopupWithImage} from './PopupWithImage.js';
+import {PopupWithForm} from './PopupWithForm.js';
+import {UserInfo} from './UserInfo.js';
 
-const formProfileElement = document.querySelector(".popup__form_profile");
-const formElemensAdd = document.querySelector(".popup__form_add");
-const nameProfile = document.querySelector(".profile__name");
-const jobProfile = document.querySelector(".profile__text");
-const closeProfileButton = document.querySelector(".popup__close-button");
-const popupProfileMain = document.querySelector(".popup_profile");
-const openButtonPopup = document.querySelector(".profile__edit-button");
-const nameInput = document.querySelector(".popup__input_type_name");
-const jobInput = document.querySelector(".popup__input_type_text");
 
-const addButton = document.querySelector(".profile__add-button");
-const popUpAdd = document.querySelector("#popup_elements");
-const popUpPic = document.querySelector("#popup-image");
-const popUpPicCloseButton = document.querySelector(
-  ".popup__close-button-image"
-);
-const allPopups = Array.from(document.querySelectorAll(".popup"));
-const sectionElement = document.querySelector(".template");
-const template = document.querySelector(".elements");
-const elementName = document.querySelector(".popup__input_type_title");
-const elementPlace = document.querySelector(".popup__input_type_url");
-const popUpSaveButton = document.querySelector("#elements__save-button");
-const popUpCloseButtonAdd = document.querySelector("#elements__close");
-const popUpPicImage = document.querySelector(".popup__picture-image");
-const popUpPicText = document.querySelector(".popup__title-image");
-const formAddCard = document.querySelector('#popup__form_element');
 
+const popupEditProfile = document.querySelector('.popup__form_profile');
+const openEditProfilePopupButton = document.querySelector('.profile__edit-button');
+const formEditProfile = popupEditProfile.querySelector('.popup__form');
+const currentProfileName = document.querySelector('.profile__name');
+const currentAboutMe = document.querySelector('.profile__text');
+const inputProfileName = popupEditProfile.querySelector('.popup__input_type_name');
+const inputAboutMe = popupEditProfile.querySelector('.popup__input_type_text');
+
+const popupAddCard = document.querySelector('.popup_elements');
+const formAddCard= document.querySelector('#popup_elements-add');
+const openAddCardPopupButton = document.querySelector('.profile__add-button');
+
+const template = '.elements'; 
+const elements = document.querySelector('.template');
+const popupOpenImage = document.querySelector('.popup__container-image');
 const initialCards = [
   {
-    name: "Архыз",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
-    name: "Челябинская область",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-    name: "Иваново",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
-    name: "Камчатка",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-    name: "Холмогорский район",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-    name: "Байкал",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
-
-
-function submitProfileForm(evt) {
-  evt.preventDefault();
-
-  nameProfile.textContent = nameInput.value;
-  jobProfile.textContent = jobInput.value;
-  handleClosePopup(popupProfileMain);
-}
-
-function openProfilePopup() {
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
-   handleOpenPopup(popupProfileMain);
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-
-
-function handleOpenPopup(popUpAdd) {
-  popUpAdd.classList.add("popup_opened");
-  document.addEventListener("keydown", keyHandler);
-  popUpSaveButton.disabled = true;
-}
-
-
-
-function handleClosePopup(popUpAdd) {
-  popUpAdd.classList.remove("popup_opened");
-  document.removeEventListener("keydown", keyHandler);
-}
-
-
-
-const keyHandler = (evt) => {
-  if(evt.key === 'Escape'){
-      const openedPopup = document.querySelector('.popup_opened');
-      handleClosePopup(openedPopup);
-  }
-}
-
-allPopups.forEach(function (popUpAdd) {
-  popUpAdd.addEventListener("click", function (evt) {
-    if (evt.target.classList.contains("popup_opened")) {
-      handleClosePopup(popUpAdd);
-    }
-  });
-}); 
-
-function picOpenPls (link, name) {
-  popUpPicImage.src = link;
-  popUpPicText.innerText =name;
-  handleOpenPopup(popUpPic);
-}
-
-const getCard = (data) => {
-  const card = new Card(data, '.elements', picOpenPls);
-  return card.getCard();
-}
-
-
-const renderCards = () => {
-  const items = initialCards.map(element => getCard(element));
-  sectionElement.append(...items)
-}
-
-function handlesubmitform(evt) {
-  evt.preventDefault();
-  const item = getCard({
-    name: elementName.value,
-    link: elementPlace.value,
-  });
-  sectionElement.prepend(item);
-  handleClosePopup(popUpAdd);
-};
-
-const parameterofValidation = {
+]
+const validationElements = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: '.popup__save-button_inactive',
   inputErrorClass: '.popup__input_state_invalid'
 }
+const popupEditProfileValidator = new FormValidator(validationElements, '.popup__form_profile');
+
+const popupAddCardValidator = new FormValidator(validationElements, '.popup__form_add');
+
+const imagePopup = new PopupWithImage (popupOpenImage);
 
 
-const formProfileValidator =  new FormValidator(parameterofValidation, formProfileElement);
-formProfileValidator.enableValidation();
-const formAddCardValidator = new FormValidator(parameterofValidation, formElemensAdd);
-formAddCardValidator.enableValidation();
+const addCard = (data) => {
+    const card = new Card(data, template, (name, link) => {imagePopup.open(name, link)});
+    cardList.addItem (card.getCard());
+}
+
+const cardList = new Section ({
+    items: initialCards.reverse(),
+    renderer: (item) => {addCard (item)},
+}, elements)
+
+cardList.render();
+
+const addCardPopupForm = new PopupWithForm ('.popup__container-add', ({cardname, imagelink}) => {addCard({name: cardname, link: imagelink})}); 
+
+const editProfilePopupForm = new PopupWithForm ('.popup__container', ({profilename, job}) => {userInfo.setUserInfo({profilename, job})}); 
+
+const userInfo = new UserInfo (currentProfileName, currentAboutMe);
 
 
+const addProfileInfo = () => {
+    const currentInfo = userInfo.getUserInfo();
+    inputProfileName.value = currentInfo.name;
+    inputAboutMe.value = currentInfo.job;
+    popupEditProfileValidator.enableValidation();
+    editProfilePopupForm.open();
+}
 
+const openAddCardPopup = () => {
+    popupAddCardValidator.enableValidation();
+    addCardPopupForm.open()
+}
 
-addButton.addEventListener("click", function () {
-  elementName.value = "";
-  elementPlace.value = "";
-  handleOpenPopup(popUpAdd);
-  popUpSaveButton.classList.add(parameterofValidation.inactiveButtonClass);
-  
-});
-popUpCloseButtonAdd.addEventListener("click", function () {
-  handleClosePopup(popUpAdd);
-});
-popUpPicCloseButton.addEventListener("click", function () {
-  handleClosePopup(popUpPic);
-});
-openButtonPopup.addEventListener("click", function () {
-  openProfilePopup();
-});
-closeProfileButton.addEventListener("click", function () {
-  handleClosePopup(popupProfileMain);
-});
-formProfileElement.addEventListener("submit", submitProfileForm);
-formAddCard.addEventListener("submit",handlesubmitform); 
-renderCards();
+openAddCardPopupButton.addEventListener('click', openAddCardPopup);
+openEditProfilePopupButton.addEventListener('click', addProfileInfo);
+imagePopup.setEventListeners();
+addCardPopupForm.setEventListeners();
+editProfilePopupForm.setEventListeners();
