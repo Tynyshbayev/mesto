@@ -75,7 +75,7 @@ const cardList = new Section ({
 cardList.render();
 const addCardPopupForm = new PopupWithForm (popupAddCard, ({title, url}) => {addCard({name: title, link: url})}); 
 
-const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({name, text}) => {userInfo.setUserInfo({name, text})}); 
+const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({nameprofile, text}) => {userInfo.setUserInfo({nameprofile, text})}); 
 
 const userInfo = new UserInfo (currentProfileName, currentAboutMe);
 
@@ -83,7 +83,7 @@ const userInfo = new UserInfo (currentProfileName, currentAboutMe);
 const addProfileInfo = () => {
     const currentInfo = userInfo.getUserInfo();
     inputProfileName.value = currentInfo.name;
-    inputAboutMe.value = currentInfo.text;
+    inputAboutMe.value = currentInfo.job;
     popupEditProfileValidator.enableValidation();
     editProfilePopupForm.open();
 }

@@ -3,8 +3,7 @@ export class Popup {
         this._popup = popup;
         console.log(popup);
         this._popupOpened = 'popup_opened';
-        this._closeButton = document.querySelector('.popup__close-button');
-        console.log(this._closeButton)
+        this._closeButton = popup.querySelector('.popup__close-button');
     }
 
     open () {
