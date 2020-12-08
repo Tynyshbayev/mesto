@@ -83,7 +83,7 @@ const userInfo = new UserInfo (currentProfileName, currentAboutMe);
 const addProfileInfo = () => {
     const currentInfo = userInfo.getUserInfo();
     inputProfileName.value = currentInfo.name;
-    inputAboutMe.value = currentInfo.job;
+    inputAboutMe.value = currentInfo.text;
     popupEditProfileValidator.enableValidation();
     editProfilePopupForm.open();
 }
