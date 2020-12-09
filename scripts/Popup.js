@@ -1,7 +1,7 @@
 export class Popup {
     constructor (popup) {
         this._popup = popup;
-        console.log(popup);
+        
         this._popupOpened = 'popup_opened';
         this._closeButton = popup.querySelector('.popup__close-button');
     }
