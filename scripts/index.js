@@ -7,7 +7,7 @@ import {UserInfo} from './UserInfo.js';
 
 
 
-const popupEditProfile = document.querySelector('.popup__form_profile');
+const popupEditProfile = document.querySelector('.popup_profile');
 const openEditProfilePopupButton = document.querySelector('.profile__edit-button');
 const formEditProfile = popupEditProfile.querySelector('.popup__form');
 const currentProfileName = document.querySelector('.profile__name');
