@@ -1,24 +1,22 @@
-import {Card} from './card.js';
-import {FormValidator} from './formValidator.js'
-import {Section} from './Section.js';
-import {PopupWithImage} from './PopupWithImage.js';
-import {PopupWithForm} from './PopupWithForm.js';
-import {UserInfo} from './UserInfo.js';
-
+import {Card} from '../components/card.js';
+import {FormValidator} from '../components/formValidator.js'
+import {Section} from '../components/Section.js';
+import {PopupWithImage} from '../components/PopupWithImage.js';
+import {PopupWithForm} from '../components/PopupWithForm.js';
+import {UserInfo} from '../components/UserInfo.js';
+import './index.css';
 
 
 const popupEditProfile = document.querySelector('.popup_profile');
-const openEditProfilePopupButton = document.querySelector('.profile__edit-button');
 const formEditProfile = popupEditProfile.querySelector('.popup__form');
 const currentProfileName = document.querySelector('.profile__name');
 const currentAboutMe = document.querySelector('.profile__text');
-const inputProfileName = popupEditProfile.querySelector('.popup__input_type_name');
-const inputAboutMe = popupEditProfile.querySelector('.popup__input_type_text');
-
+const inputProfileName = document.querySelector('.popup__input_type_name');
+const inputAboutMe =  document.querySelector('.popup__input_type_text');
 const popupAddCard = document.querySelector('.popup_elements');
 const formAddCard= document.querySelector('#popup_elements-add');
-const openAddCardPopupButton = document.querySelector('.profile__add-button');
-
+const openAddPopupButton = document.querySelector('.profile__add-button');
+const openEditPopupButton = document.querySelector('.profile__edit-button');
 const template = '.elements'; 
 const elements = document.querySelector('.template');
 const popupOpenImage = document.querySelector('.photo');
@@ -73,14 +71,14 @@ const cardList = new Section ({
 }, elements)
 
 cardList.render();
-const addCardPopupForm = new PopupWithForm (popupAddCard, ({title, url}) => {addCard({name: title, link: url})}); 
+const addCardPopupForm = new PopupWithForm (popupAddCard, ({cardname, imagelink}) => {addCard({name: cardname, link: imagelink})}); 
 
-const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({nameprofile, text}) => {userInfo.setUserInfo({nameprofile, text})}); 
+const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({profilename, job}) => {userInfo.setUserInfo({profilename, job})});
 
 const userInfo = new UserInfo (currentProfileName, currentAboutMe);
 
 
-const addProfileInfo = () => {
+const addProfileInformation = () => {
     const currentInfo = userInfo.getUserInfo();
     inputProfileName.value = currentInfo.name;
     inputAboutMe.value = currentInfo.job;
@@ -93,8 +91,8 @@ const openAddCardPopup = () => {
     addCardPopupForm.open()
 }
 
-openAddCardPopupButton.addEventListener('click', openAddCardPopup);
-openEditProfilePopupButton.addEventListener('click', addProfileInfo);
+openAddPopupButton.addEventListener('click', openAddCardPopup);
+openEditPopupButton.addEventListener('click', addProfileInformation);
 imagePopup.setEventListeners();
 addCardPopupForm.setEventListeners();
 editProfilePopupForm.setEventListeners();

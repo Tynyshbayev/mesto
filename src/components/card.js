@@ -19,7 +19,7 @@ export class Card {
         this._cardImageCaption.textContent = this._name;
 
         this._setEventListeners();
-
+        
         return this._card;
     }
 
