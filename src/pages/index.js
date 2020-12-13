@@ -5,8 +5,9 @@ import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
 import './index.css';
-
-
+const closeButtonall = document.querySelector('.popup__close-button')
+const popupFormProfile = '.popup__form_profile'
+const popupFormAdd = '.popup__form_add'
 const popupEditProfile = document.querySelector('.popup_profile');
 const formEditProfile = popupEditProfile.querySelector('.popup__form');
 const currentProfileName = document.querySelector('.profile__name');
@@ -53,18 +54,21 @@ const validationElements = {
   inactiveButtonClass: '.popup__save-button_inactive',
   inputErrorClass: '.popup__input_state_invalid'
 }
-const popupEditProfileValidator = new FormValidator(validationElements, '.popup__form_profile');
-
-const popupAddCardValidator = new FormValidator(validationElements, '.popup__form_add');
-
+const popupEditProfileValidator = new FormValidator(validationElements, popupFormProfile);
+popupEditProfileValidator.enableValidation();
+const popupAddCardValidator = new FormValidator(validationElements, popupFormAdd);
+popupAddCardValidator.enableValidation();
 const imagePopup = new PopupWithImage (popupOpenImage);
 
 
 const addCard = (data) => {
-    const card = new Card(data, template, (name, link) => {imagePopup.open(name, link)});
-    cardList.addItem (card.getCard());
+    
+    cardList.addItem (crateCard(data).getCard());
 }
-
+const crateCard = (data) =>{
+   return new Card(data, template, (name, link) => {imagePopup.open(name, link)});
+}
+ 
 const cardList = new Section ({
     items: initialCards.reverse(),
     renderer: (item) => {addCard (item)},
@@ -77,17 +81,16 @@ const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({profilename,
 
 const userInfo = new UserInfo (currentProfileName, currentAboutMe);
 
-
 const addProfileInformation = () => {
     const currentInfo = userInfo.getUserInfo();
     inputProfileName.value = currentInfo.name;
     inputAboutMe.value = currentInfo.job;
-    popupEditProfileValidator.enableValidation();
     editProfilePopupForm.open();
+    popupEditProfileValidator.hideErrors();
 }
 
 const openAddCardPopup = () => {
-    popupAddCardValidator.enableValidation();
+    popupAddCardValidator.hideErrors();
     addCardPopupForm.open()
 }
 

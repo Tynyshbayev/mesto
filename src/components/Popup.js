@@ -2,17 +2,17 @@ export class Popup {
     constructor (popup) {
         this._popup = popup;
         
-        this._popupOpened = 'popup_opened';
+        this._popupOpenedSelector = 'popup_opened';
         this._closeButton = popup.querySelector('.popup__close-button');
     }
 
     open () {
-        this._popup.classList.add(this._popupOpened);
+        this._popup.classList.add(this._popupOpenedSelector);
         document.addEventListener('keydown', this._handleEscClose.bind(this));
     }
 
     close () {
-        this._popup.classList.remove(this._popupOpened);
+        this._popup.classList.remove(this._popupOpenedSelector);
         document.removeEventListener('keydown',this._handleEscClose.bind(this));
     }
 
