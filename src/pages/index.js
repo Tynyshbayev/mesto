@@ -5,7 +5,6 @@ import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
 import './index.css';
-const closeButtonall = document.querySelector('.popup__close-button')
 const popupFormProfile = '.popup__form_profile'
 const popupFormAdd = '.popup__form_add'
 const popupEditProfile = document.querySelector('.popup_profile');
