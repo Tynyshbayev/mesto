@@ -86,6 +86,7 @@ const addProfileInformation = () => {
     inputAboutMe.value = currentInfo.job;
     editProfilePopupForm.open();
     popupEditProfileValidator.hideErrors();
+    popupEditProfileValidator.toggleButtonState();
 }
 
 const openAddCardPopup = () => {
