@@ -93,23 +93,19 @@ const likeCard = (id, card) => {//запрос на лайк/дизлайк ка
 const cardList = new Section (elements);
 
 
-const addCard = (data) => {
-    cardList.addItem (crateCard(data).getCard());
-}
-
-
-const crateCard = (data) =>{
-   return new new Card({    
-    ...data, 
-    currentUserId: userInfo.getUserId(), 
-    template, 
-    handleClickCard: () => {imagePopup.open(data)},
-    handleRemoveCard: () => {confirmAndDeleteCard(data._id, card)},
-    handleLike: () => {likeCard(data._id, card)}
-});
+const addCard = (data) => {//создание карточки 
+    const card = new Card({    
+        ...data, 
+        currentUserId: userInfo.getUserId(), 
+        template, 
+        handleClickCard: () => {imagePopup.open(data)},
+        handleRemoveCard: () => {confirmAndDeleteCard(data._id, card)},
+        handleLike: () => {likeCard(data._id, card)}
+    });
+    cardList.addItem (card.getCard());
 }
  
-const addCardPopupForm = new PopupWithForm (popupAddCard, (cardData) => {//попап добавления карточки 
+const addCardPopupForm = new PopupWithForm (popupAddCard, (cardData) => {
     api.addNewCard(cardData)
     .then ((cardData) => {
         addCard(cardData)

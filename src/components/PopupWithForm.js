@@ -2,12 +2,14 @@ import {Popup} from './Popup.js'
 
 export class PopupWithForm extends Popup {
     constructor (popup, submitFormHandler) {
+        console.log(popup)
         super(popup);
+        
         this._popupForm = this._popup.querySelector('.popup__form');
-        console.log(this._popupForm);
         this._submitButton = this._popupForm.querySelector('.popup__save-button');
         this._inputFields = Array.from(this._popupForm.querySelectorAll('.popup__input'));
         this.submitFormHandler = submitFormHandler;
+        
     }
     _toggleButtonState(state) {
         if(state) {
@@ -21,7 +23,6 @@ export class PopupWithForm extends Popup {
         this._inputFields.forEach((input) => {
             this._inputValues[input.name] = input.value;
         });
-        console.log(this._inputValues);
         return this._inputValues;
     }
 

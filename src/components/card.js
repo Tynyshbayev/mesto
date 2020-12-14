@@ -1,13 +1,12 @@
 export class Card {
-    constructor (data, templateSelector, openImagePreview) {
-        this._name = data.name;
-        this._link = data.link;
+    constructor ({name, link, likes, _id, owner, currentUserId, template, handleClickCard, handleRemoveCard, handleLike}) {
+        this._name = name;
+        this._link = link;
         this._likes = likes;
         this._cardId = _id,
         this._ownerId = owner._id;
         this._curentOwnerId = currentUserId;
-        this._template = document.querySelector(templateSelector).content.querySelector('.elements__element');
-        this._openImagePreview = openImagePreview;
+        this._template = document.querySelector(template).content.querySelector('.elements__element');
         this._handleClickCard = handleClickCard;
         this._handleRemoveCard = handleRemoveCard;
         this._handleLike = handleLike,
@@ -34,7 +33,7 @@ export class Card {
     }
     _hideRemoveButton() {
         if (this._curentOwnerId !== this._ownerId) {
-            this._cardDeleteButton.classList.add('remove-btn_visibility');
+            this._cardDeleteButton.classList.add('remove-button_visibility');
         }
     }
 
