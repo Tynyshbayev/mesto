@@ -5,6 +5,7 @@ import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
 import {PopupWithSubmit} from '../components/PopupWithSubmit.js';
+import {Api} from '../components/Api.js';
 import './index.css';
 const popupFormProfile = '.popup__form_profile'
 const popupFormAdd = '.popup__form_add'
@@ -23,8 +24,9 @@ const template = '.elements';
 const elements = document.querySelector('.template');
 const popupOpenImage = document.querySelector('.photo');
 const formUpdateAvatar = '.popup__form_avatar-update'
-const popupRemoveCard = document.querySelector('.popup__remove-card');
+const popupRemoveCard = document.querySelector('.popup_remove-card');
 const popupUpdateAvatar = document.querySelector('.popup_avatar-update');
+const changeAvatarButton = document.querySelector('.profile__change-avatar-button')
 const initialCards = [
   {
       name: 'Архыз',
@@ -75,7 +77,8 @@ const api = new Api ({
     url: 'https://mesto.nomoreparties.co/v1/cohort-18'
 })
 
-const confirmAndDeleteCard = (id, card) => {//подтверждение и удаление карточки 
+
+const confirmAndDeleteCard = (id, card) => {
     removeCardPopup.setRemove(() => {
         api.removeCard(id)
         .then(() => card.removeCard())
@@ -85,7 +88,7 @@ const confirmAndDeleteCard = (id, card) => {//подтверждение и уд
     removeCardPopup.open();
 }
 
-const likeCard = (id, card) => {//запрос на лайк/дизлайк карточки 
+const likeCard = (id, card) => {
     const likeRequest = card.getIsLiked() ? api.dislikeCard(id) : api.likeCard(id);
             likeRequest.then(res => card._likeFunction(res))
             .catch(err => console.log(err));
@@ -118,7 +121,7 @@ const addCardPopupForm = new PopupWithForm (popupAddCard, (cardData) => {
     })
 });
 
-const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({name, about}) => {//попап редактирования профиля 
+const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({name, about}) => {
     api.editUserInfo(name, about)
     .then ((res) => {
         userInfo.setUserInfo(res.name, res.about)
@@ -131,7 +134,7 @@ const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({name, about}
 })
 
 
-const updateAvatarPopup = new PopupWithForm (popupUpdateAvatar, ({avatarlink}) => {// попап обновления аватара 
+const updateAvatarPopup = new PopupWithForm (popupUpdateAvatar, ({avatarlink}) => {
     api.editUserAvatar(avatarlink)
     .then ((res) => {
         userInfo.setUserAvatar(res.avatar)
@@ -145,7 +148,6 @@ const updateAvatarPopup = new PopupWithForm (popupUpdateAvatar, ({avatarlink}) =
 })
 
 
-cardList.render();
 
 const userInfo = new UserInfo (curentAvatarSelector, currentProfileName, currentAboutMe);
 
@@ -181,7 +183,7 @@ const openAddCardPopup = () => {
 
 const openUpdateAvatarPopup = () => {
     popupUpdateAvatarValidator.toggleButtonState();
-    popupUpdateAvatarValidator.resetErrorMessage();
+    popupUpdateAvatarValidator.hideErrors();
     updateAvatarPopup.open();
 }
 
