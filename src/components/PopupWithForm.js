@@ -4,10 +4,18 @@ export class PopupWithForm extends Popup {
     constructor (popup, submitFormHandler) {
         super(popup);
         this._popupForm = this._popup.querySelector('.popup__form');
+        console.log(this._popupForm);
+        this._submitButton = this._popupForm.querySelector('.popup__save-button');
         this._inputFields = Array.from(this._popupForm.querySelectorAll('.popup__input'));
         this.submitFormHandler = submitFormHandler;
     }
-    
+    _toggleButtonState(state) {
+        if(state) {
+            this._submitButton.textContent = 'Сохранение...';
+        } else {
+            this._submitButton.textContent = 'Сохранить';
+        }
+    }
     _getInputValues () {
         this._inputValues = {};
         this._inputFields.forEach((input) => {

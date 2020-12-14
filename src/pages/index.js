@@ -4,6 +4,7 @@ import {Section} from '../components/Section.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
+import {PopupWithSubmit} from '../components/PopupWithSubmit.js';
 import './index.css';
 const popupFormProfile = '.popup__form_profile'
 const popupFormAdd = '.popup__form_add'
@@ -17,9 +18,13 @@ const popupAddCard = document.querySelector('.popup_elements');
 const formAddCard= document.querySelector('#popup_elements-add');
 const openAddPopupButton = document.querySelector('.profile__add-button');
 const openEditPopupButton = document.querySelector('.profile__edit-button');
+const curentAvatarSelector = document.querySelector('.profile__avatar');
 const template = '.elements'; 
 const elements = document.querySelector('.template');
 const popupOpenImage = document.querySelector('.photo');
+const formUpdateAvatar = '.popup__form_avatar-update'
+const popupRemoveCard = document.querySelector('.popup__remove-card');
+const popupUpdateAvatar = document.querySelector('.popup_avatar-update');
 const initialCards = [
   {
       name: 'Архыз',
@@ -55,30 +60,113 @@ const validationElements = {
 }
 const popupEditProfileValidator = new FormValidator(validationElements, popupFormProfile);
 popupEditProfileValidator.enableValidation();
+
 const popupAddCardValidator = new FormValidator(validationElements, popupFormAdd);
 popupAddCardValidator.enableValidation();
+
+const popupUpdateAvatarValidator = new FormValidator(validationElements, formUpdateAvatar)
+popupUpdateAvatarValidator.enableValidation(); 
+
 const imagePopup = new PopupWithImage (popupOpenImage);
+const removeCardPopup = new PopupWithSubmit(popupRemoveCard);
+
+const api = new Api ({
+    token: '8979d512-ff50-43b0-b88b-551975431ae7',
+    url: 'https://mesto.nomoreparties.co/v1/cohort-18'
+})
+
+const confirmAndDeleteCard = (id, card) => {//подтверждение и удаление карточки 
+    removeCardPopup.setRemove(() => {
+        api.removeCard(id)
+        .then(() => card.removeCard())
+        .then(() => removeCardPopup.close())
+        .catch(err => console.log(err))
+    })
+    removeCardPopup.open();
+}
+
+const likeCard = (id, card) => {//запрос на лайк/дизлайк карточки 
+    const likeRequest = card.getIsLiked() ? api.dislikeCard(id) : api.likeCard(id);
+            likeRequest.then(res => card._likeFunction(res))
+            .catch(err => console.log(err));
+}
+const cardList = new Section (elements);
 
 
 const addCard = (data) => {
-    
     cardList.addItem (crateCard(data).getCard());
 }
+
+
 const crateCard = (data) =>{
-   return new Card(data, template, (name, link) => {imagePopup.open(name, link)});
+   return new new Card({    
+    ...data, 
+    currentUserId: userInfo.getUserId(), 
+    template, 
+    handleClickCard: () => {imagePopup.open(data)},
+    handleRemoveCard: () => {confirmAndDeleteCard(data._id, card)},
+    handleLike: () => {likeCard(data._id, card)}
+});
 }
  
-const cardList = new Section ({
-    items: initialCards.reverse(),
-    renderer: (item) => {addCard (item)},
-}, elements)
+const addCardPopupForm = new PopupWithForm (popupAddCard, (cardData) => {//попап добавления карточки 
+    api.addNewCard(cardData)
+    .then ((cardData) => {
+        addCard(cardData)
+    })
+    .then (() => {
+        addCardPopupForm.close()
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+});
+
+const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({name, about}) => {//попап редактирования профиля 
+    api.editUserInfo(name, about)
+    .then ((res) => {
+        userInfo.setUserInfo(res.name, res.about)
+    }).then (() => {
+        editProfilePopupForm.close()
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+
+const updateAvatarPopup = new PopupWithForm (popupUpdateAvatar, ({avatarlink}) => {// попап обновления аватара 
+    api.editUserAvatar(avatarlink)
+    .then ((res) => {
+        userInfo.setUserAvatar(res.avatar)
+    })
+    .then (() => {
+        updateAvatarPopup.close()
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
 
 cardList.render();
-const addCardPopupForm = new PopupWithForm (popupAddCard, ({cardname, imagelink}) => {addCard({name: cardname, link: imagelink})}); 
 
-const editProfilePopupForm = new PopupWithForm (popupEditProfile, ({profilename, job}) => {userInfo.setUserInfo({profilename, job})});
+const userInfo = new UserInfo (curentAvatarSelector, currentProfileName, currentAboutMe);
 
-const userInfo = new UserInfo (currentProfileName, currentAboutMe);
+Promise.all ([//получение первичных данных с сервера
+    api.getUserInformation (),
+    api.getCards(),
+]).then((values) => {
+    const [userData, initialCards] = values;
+    userInfo.setUserInfo(userData.name, userData.about, userData._id);
+    userInfo.setUserAvatar(userData.avatar);
+    const initialCardsReverse = initialCards.reverse();
+    initialCardsReverse.forEach(element => {
+        addCard(element);
+    });
+}).catch((err) => {
+    console.log(err);
+})
 
 const addProfileInformation = () => {
     const currentInfo = userInfo.getUserInfo();
@@ -95,8 +183,24 @@ const openAddCardPopup = () => {
     addCardPopupForm.open()
 }
 
+const openUpdateAvatarPopup = () => {
+    popupUpdateAvatarValidator.toggleButtonState();
+    popupUpdateAvatarValidator.resetErrorMessage();
+    updateAvatarPopup.open();
+}
+
 openAddPopupButton.addEventListener('click', openAddCardPopup);
+
 openEditPopupButton.addEventListener('click', addProfileInformation);
+
 imagePopup.setEventListeners();
+
 addCardPopupForm.setEventListeners();
+
 editProfilePopupForm.setEventListeners();
+
+changeAvatarButton.addEventListener('click', openUpdateAvatarPopup);
+
+updateAvatarPopup.setEventListeners();
+
+removeCardPopup.setEventListeners()

@@ -1,8 +1,8 @@
 export class UserInfo {
-    constructor (profileNameSelector, aboutMeSelector ) {
+    constructor (avatarSelector, profileNameSelector, aboutMeSelector ) {
+        this._avatarProfile = avatarSelector
         this._profileName = profileNameSelector;
         this._profileAboutMe = aboutMeSelector;
-        
     }
 
     getUserInfo () {
@@ -12,9 +12,18 @@ export class UserInfo {
         return this._profileInfo;
         
     }
+    getUserId () {
+        return this._currentUserId;
+    }
 
     setUserInfo ({profilename, job}) {
         this._profileName.textContent = profilename;
         this._profileAboutMe.textContent = job;
+    }
+    
+    setUserInfo (profilename, job, id) {
+        this._profileName.textContent = profilename;
+        this._profileAboutMe.textContent = job;
+        this._currentUserId = id;
     }
 }
