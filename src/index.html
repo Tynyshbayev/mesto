@@ -57,9 +57,9 @@
          <div class="popup__container popup__container_add">
             <h3 class="popup__title">Новое место</h3>
             <form method = "POST" name="elementspopup" class="popup__form popup__form_add" id="popup__form_element">
-               <input id="title-input" type="text" class="popup__input_type_title popup__input" name="cardname" placeholder="Название" minlength="2" maxlength="40" required/>
+               <input id="title-input" type="text" class="popup__input_type_title popup__input" name="name" placeholder="Название" minlength="2" maxlength="40" required/>
                <span id="title-input-error" class="popup__input-error"></span>
-               <input id="url-input" type="url" class="popup__input_type_url popup__input" name="imagelink" placeholder="Ссылка на картинку" required/>
+               <input id="url-input" type="url" class="popup__input_type_url popup__input" name="link" placeholder="Ссылка на картинку" required/>
                <span id="url-input-error" class="popup__input-error"></span>
                <button class="popup__close-button" type="button"><img src="<%=require('./images/close_button.svg')%>" alt="кнопка закрытия попапа 2" id="elements__close"></button>
                <button class="popup__save-button" type="submit" id="elements__save-button">Создать</button>
@@ -71,7 +71,6 @@
             <button class="popup__close-button-image popup__close-button" type="reset"><img src="<%=require('./images/close_button.svg')%>" alt="кнопка закрытия попапа 3" ></button>
             <img src="#" alt="картинка_попап" class="popup__picture-image"> 
             <h2 class="popup__title-image"></h2>
-            <p class="cards__like_count">1</p>
          </div>
       </div>
       <div class="popup popup_remove-card">
@@ -79,19 +78,22 @@
             <form class="popup__form" name="profile-edit" novalidate>
                <button class="popup__close-button" type="button"><img src="<%=require('./images/close_button.svg')%>" alt="кнопка закрытия попапа 2" id="elements__close"></button>
                <h3 class="popup__title">Вы уверены?</h3>
-               <button class="popup__save-button" type="submit" id="elements__save-button">Создать</button>
+               <button class="popup__save-button" type="submit" id="elements__save-button">Да</button>
             </form>
          </div>
       </div>
       <template class="elements">
          <div class="elements__element">
-            <img src="" alt="картинка_пейзажа" class="elements__image">   
+            <img src="" alt="картинка_пейзажа" class="elements__image">
+             <button type="button" class="elements__delete-button"></button>  
+             <div class="elements__info">
             <h2 class="elements__title"></h2>
             <div class="elements__likes-container">
                <button type="button" class="elements__like"></button>
                <p class="elements__like-counter"></p>
             </div>
-            <button type="button" class="elements__delete-button"></button>
+            </div>
+            
          </div>
       </template>
    </body>

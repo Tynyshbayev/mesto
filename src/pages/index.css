@@ -38,7 +38,11 @@
 @import url(../blocks/popup/__input-error/popup__input-error.css);
 @import url(../blocks/template/template.css);
 @import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
-@import url(../blocks/profile/__change-avatar-button/profile__change-avatar-button.css)
+@import url(../blocks/profile/__change-avatar-button/profile__change-avatar-button.css);
+@import url(../blocks/elements/__like-counter/elements__like-counter.css);
+@import url(../blocks/elements/__likes-container/elements__like-container.css);
+@import url(../blocks/elements/__info/elements__info.css);
+@import url(../blocks/elements/__delete-button/_inactive/elements__delete-button_inactive.css);
 
 
 

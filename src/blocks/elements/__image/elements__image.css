@@ -2,8 +2,7 @@
     width: 282px;
     height: 282px;
     border-radius: 10px 10px 0px 0px;
-    grid-row: 1/5;
-    grid-column: 1/2;
+    cursor: pointer;
 }
 .elements__image:hover{
     opacity: 0.6;

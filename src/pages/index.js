@@ -104,10 +104,11 @@ const addCard = (data) => {//создание карточки
         handleClickCard: () => {imagePopup.open(data)},
         handleRemoveCard: () => {confirmAndDeleteCard(data._id, card)},
         handleLike: () => {likeCard(data._id, card)}
+        
     });
     cardList.addItem (card.getCard());
+    console.log(imagePopup.open(data));
 }
- 
 const addCardPopupForm = new PopupWithForm (popupAddCard, (cardData) => {
     api.addNewCard(cardData)
     .then ((cardData) => {
@@ -151,7 +152,7 @@ const updateAvatarPopup = new PopupWithForm (popupUpdateAvatar, ({avatarlink}) =
 
 const userInfo = new UserInfo (curentAvatarSelector, currentProfileName, currentAboutMe);
 
-Promise.all ([//получение первичных данных с сервера
+Promise.all ([
     api.getUserInformation (),
     api.getCards(),
 ]).then((values) => {

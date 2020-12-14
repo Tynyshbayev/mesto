@@ -17,9 +17,8 @@ export class UserInfo {
         return this._currentUserId;
     }
 
-    setUserInfo ({profilename, job}) {
-        this._profileName.textContent = profilename;
-        this._profileAboutMe.textContent = job;
+    setUserAvatar (link) {
+        this._avatarProfile.src = link;
     }
     
     setUserInfo (profilename, job, id) {
