@@ -90,6 +90,7 @@ const addProfileInformation = () => {
 
 const openAddCardPopup = () => {
     popupAddCardValidator.hideErrors();
+    popupAddCardValidator.toggleButtonState();
     addCardPopupForm.open()
 }
 
