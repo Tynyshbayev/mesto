@@ -26,7 +26,6 @@
         <footer class="footer">
             <p class="footer__author">&copy;2020.Тынышбаев Алихан</p>
         </footer>
-
         <div class="popup popup_profile" id="popup_edit">
             <div class="popup__container ">
                 <h3 class="popup__title">Редактировать профиль</h3>
@@ -36,7 +35,7 @@
                     <input id="text-input" type="text" class="popup__input_type_text popup__input" name="job" minlength="2" maxlength="200" placeholder="Вид деятельности" required />
                     <span id="text-input-error" class="popup__input-error"></span>
                     <button class="popup__close-button" type="button"><img src="<%=require('./images/close_button.svg')%>" alt="кнопка закрытия попапа 1" /></button>
-                    <button class="popup__save-button" type="submit" id="popup__save-button">Сохранить</button>
+                    <button class="popup__save-button" type="submit">Сохранить</button>
                 </form>
             </div>
         </div>
@@ -49,7 +48,7 @@
                     <input id="url-input" type="url" class="popup__input_type_url popup__input" name="imagelink" placeholder="Ссылка на картинку" required/>
                     <span id="url-input-error" class="popup__input-error"></span>
                     <button class="popup__close-button" type="button"><img src="<%=require('./images/close_button.svg')%>" alt="кнопка закрытия попапа 2" id="elements__close"></button>
-                    <button class="popup__save-button" type="submit" id="elements__save-button">Создать</button>
+                    <button class="popup__save-button" type="submit">Создать</button>
                     </form>
             </div>
         </div>
@@ -59,7 +58,6 @@
               <img src="#" alt="картинка_попап" class="popup__picture-image"> 
               <h2 class="popup__title-image"></h2>
             </div>
-        </div>
         <template class="elements">
             <div class="elements__element">
               <img src="" alt="картинка_пейзажа" class="elements__image">

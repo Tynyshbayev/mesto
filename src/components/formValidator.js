@@ -7,7 +7,9 @@ export class FormValidator {
       this._submitButton = this._formElement.querySelector(
         settings.submitButtonSelector
       );
+      console.log(this._submitButton);
       this._inactiveButtonStatus = settings.inactiveButtonClass;
+      console.log(this._inactiveButtonStatus);
       this._inputError = settings.inputErrorClass;
     }
     _showError(input) {
@@ -30,10 +32,10 @@ export class FormValidator {
     }
     _toggleButtonState() {
       if (this._formElement.checkValidity()) {
-        this._submitButton.classList.remove(this._inactiveButtonClass);
+        this._submitButton.classList.remove(this._inactiveButtonStatus);
         this._submitButton.disabled = false;
       } else {
-        this._submitButton.classList.add(this._inactiveButtonClass);
+        this._submitButton.classList.add(this._inactiveButtonStatus);
         this._submitButton.disabled = true;
       }
     }
