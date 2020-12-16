@@ -4,7 +4,7 @@ export class Api {
         this._url = url;
     }
 
-    _response (res) {
+    _getResponse (res) {
         if (res.ok) {
             return res.json();
         }
@@ -16,7 +16,7 @@ export class Api {
                 headers: {
                     authorization: this._token,
             }
-        }).then(this._response)
+        }).then(this._getResponse)
     }
 
     getCards () {
@@ -24,7 +24,7 @@ export class Api {
             headers: {
                 authorization: this._token,
         }
-        }).then(this._response)
+        }).then(this._getResponse)
     }
 
     editUserInfo (name, about) {
@@ -38,7 +38,7 @@ export class Api {
                 name,
                 about
             })
-        }).then(this._response)
+        }).then(this._getResponse)
     }
 
     addNewCard ({name, link}) {
@@ -52,7 +52,7 @@ export class Api {
                 name,
                 link
             })
-        }).then(this._response)
+        }).then(this._getResponse)
     }
 
     removeCard (cardId) {
@@ -61,7 +61,7 @@ export class Api {
             headers: {
                 authorization: this._token,
         }
-        }).then(this._response)
+        }).then(this._getResponse)
     }
 
     likeCard(cardId)  {
@@ -70,7 +70,7 @@ export class Api {
             headers: {
                 authorization: this._token,
         }
-        }).then(this._response)
+        }).then(this._getResponse)
     }
 
     dislikeCard(cardId) {
@@ -79,7 +79,7 @@ export class Api {
             headers: {
                 authorization: this._token,
         }
-        }).then(this._response)
+        }).then(this._getResponse)
     }
 
     editUserAvatar (avatar) {
@@ -92,6 +92,6 @@ export class Api {
             body: JSON.stringify({
                 avatar
             })
-        }).then(this._response)
+        }).then(this._getResponse)
     }
 }
