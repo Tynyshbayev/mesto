@@ -113,10 +113,7 @@ const likeCard = (id, card) => {
 const cardList = new Section(elements);
 
 const addCard = (data) => {
-  cardList.addItem(createCard(data).getCard());
-};
-const createCard  = (data) =>{
-  return new Card({
+  const card = new Card({
     ...data,
     currentUserId: userInfo.getUserId(),
     template,
@@ -130,7 +127,8 @@ const createCard  = (data) =>{
       likeCard(data._id, card);
     },
   });
-}
+  cardList.addItem(card.getCard());
+};
 const addCardPopupForm = new PopupWithForm(popupAddCard, (cardData) => {
   api
     .addNewCard(cardData)
