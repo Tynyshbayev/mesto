@@ -127,8 +127,12 @@ const addCard = (data) => {
       likeCard(data._id, card);
     },
   });
-  cardList.addItem(card.getCard());
+  displayCard(card);
 };
+const displayCard  = (card) =>{
+  const cardElement = card.getCard();
+  cardList.addItem(cardElement);
+}
 const addCardPopupForm = new PopupWithForm(popupAddCard, (cardData) => {
   api
     .addNewCard(cardData)

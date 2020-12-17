@@ -1,7 +1,6 @@
 export class UserInfo {
     constructor (avatarSelector, profileNameSelector, aboutMeSelector ) {
-        this._avatarProfile = avatarSelector
-        console.log(this._avatarProfile)
+        this._avatarProfile = avatarSelector;
         this._profileName = profileNameSelector;
         this._profileAboutMe = aboutMeSelector;
     }
